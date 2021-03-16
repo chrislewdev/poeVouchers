@@ -1,0 +1,18 @@
+.selection-button {
+  width: 190px;
+  height: 30px;
+  margin: 10px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #51c9c0;
+  border: 1px solid #c5c6c7;
+  border-radius: 8px;
+  background-color: #1f2833;
+}
+
+.selection-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

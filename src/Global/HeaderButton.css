@@ -1,0 +1,14 @@
+.header-button {
+  text-align: center;
+  color: #51c9c0;
+  font-size: 16px;
+  padding: 3px;
+  margin-right: 32px;
+  border: 1px solid #c5c6c7;
+  background-color: #1f2833;
+}
+
+.header-button {
+  cursor: pointer;
+  opacity: 0.6;
+}
