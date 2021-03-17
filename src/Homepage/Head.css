@@ -9,3 +9,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.head-buttons-container {
+  display: flex;
+  padding-right: 50px;
+  justify-content: flex-end;
+  align-items: center;
+  width: 400px;
+}
