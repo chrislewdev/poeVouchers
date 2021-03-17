@@ -1,15 +1,19 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../Firebase";
 import SelectionButton from "../Global/SelectionButton";
 import Head from "./Head";
 import "./Homepage.css";
 
 function Homepage() {
+  const [currentUser] = useAuthState(auth);
+
   const categoriesArray = [
     "temple",
     "syndicate",
-    "bosses carry",
-    "bench crafts",
-    "challenges",
+    "boss carry",
+    "bench craft",
+    "challenge",
   ];
 
   const templeArray = [
@@ -27,32 +31,41 @@ function Homepage() {
     "hillock map",
   ];
 
+  const bossArray = ["all bosses", "sirus", "uber atziri"];
+
+  const benchArray = ["all crafts", "all crafts except"];
+
+  const challengeArray = ["encounter", "end game grind"];
+
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   const categoriesRender = categoriesArray.map((category) => (
     <SelectionButton
       buttonName={category}
-      handleClick={() => setSelectedCategories(category)}
+      handleClick={() => {
+        if (category === "temple") setSelectedCategories(templeArray);
+        if (category === "syndicate") setSelectedCategories(syndicateArray);
+        if (category === "boss carry") setSelectedCategories(bossArray);
+        if (category === "bench craft") setSelectedCategories(benchArray);
+        if (category === "challenge") setSelectedCategories(challengeArray);
+      }}
     />
   ));
 
-  const servicesRender = services.Array.map((service) => (
-    <SelectionButton
-      buttonName={service}
-      handleClick={() => setSelectedCategories(category)}
-    />
+  const servicesRender = selectedCategories.map((service) => (
+    <SelectionButton buttonName={service} />
   ));
 
   return (
     <div>
-      <Head />
+      <Head currentUser={currentUser} />
       <div className={"homepage-container"}>
         <div className={"box1"}></div>
         <div className={"box2"}>CATEGORIES</div>
         <div className={"box3"}>SERVICES</div>
         <div className={"box4"}>LISTINGS</div>
         <div className={"box5"}>{categoriesRender}</div>
-        <div className={"box6"}></div>
+        <div className={"box6"}>{servicesRender}</div>
         <div className={"box7"}></div>
       </div>
     </div>
