@@ -6,9 +6,10 @@
   margin-right: 32px;
   border: 1px solid #c5c6c7;
   background-color: #1f2833;
+  width: 60px;
 }
 
-.header-button {
+.header-button:hover {
   cursor: pointer;
   opacity: 0.6;
 }
