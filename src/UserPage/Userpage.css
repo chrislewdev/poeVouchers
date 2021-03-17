@@ -1,0 +1,56 @@
+.userpage-background {
+  min-height: 1000px;
+  background-color: #0b0c10;
+  display: flex;
+  justify-content: center;
+}
+
+.userpage-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.userpage-title {
+  font-size: 34px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #51c9c0;
+}
+
+.userpage-body-container {
+  width: 1200px;
+  height: 800px;
+  border: 2px solid #c5c6c7;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.userpage-body-box1 {
+  grid-column: 1/2;
+  border-right: 2px solid #c5c6c7;
+  display: flex;
+  flex-direction: column;
+}
+
+.userpage-body-box2 {
+  grid-column: 2/3;
+}
+
+.userpage-username {
+  font-size: 30px;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid #c5c6c7;
+  color: #51c9c0;
+}
+
+.userpage-vouches {
+  font-size: 30px;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid #c5c6c7;
+  color: #51c9c0;
+}
