@@ -1,7 +1,7 @@
 import React from "react";
 import "./HeadTitle.css";
 
-function HeadTitle() {
+function HeadTitle(props) {
   return <div className="head-title">{props.headTitle}</div>;
 }
 
