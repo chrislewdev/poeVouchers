@@ -32,7 +32,7 @@ function SignUp() {
         var errorMessage = error.message;
         if (errorCode === "auth/weak-password") {
           alert(
-            "Please try again with stronger password of combination of at least 6 inputs"
+            "Please try again with stronger password combination of at least 6 inputs"
           );
         } else if (errorCode === "auth/email-already-in-use") {
           alert("Email is already in used");

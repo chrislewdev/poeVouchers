@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { auth, db } from "../Firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useContext, useEffect, useState } from "react";
 import { useDocumentData } from "react-firebase-hooks/firestore";
+import { UserContext } from "../Global/UserContext";
+import { db } from "../Firebase";
 import "./Userpage.css";
 
 function Userpage() {
-  const [currentUser, currentUserLoading] = useAuthState(auth);
-
-  const [currentUserREF, setCurrentUserREF] = useState(null);
+  const { currentUser, currentUserLoading } = useContext(UserContext);
 
   useEffect(() => {
     if (currentUserLoading === false) {
@@ -16,18 +14,9 @@ function Userpage() {
     }
   }, [currentUser]);
 
+  const [currentUserREF, setCurrentUserREF] = useState(null);
+
   const [value, dataLoading, dataError] = useDocumentData(currentUserREF);
-
-  // useEffect(() => console.log("currentUser"), [currentUser]);
-
-  // useEffect(() => console.log("currentUserREF"), [currentUserREF]);
-
-  // useEffect(() => console.log("value"), [value]);
-
-  // const print = () => {
-  //   console.log(currentUser);
-  //   console.log(value);
-  // };
 
   return (
     <div className="userpage-background">

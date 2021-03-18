@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../Global/UserContext";
 import { auth } from "../Firebase";
 import HeaderButton from "../Global/HeaderButton";
 import HeadTitle from "../Global/HeadTitle";
 import "./Head.css";
 
-function Head(props) {
+function Head() {
   const history = useHistory();
 
-  const isLoggedIn = props.currentUser;
+  const { currentUser } = useContext(UserContext);
 
   const signOutFunction = () => {
     auth
@@ -21,19 +22,23 @@ function Head(props) {
     <div className="head-container">
       <HeadTitle headTitle="poeVouchers" />
       <div className="head-buttons-container">
-        {isLoggedIn ? <HeaderButton buttonName="Create" /> : <></>}
-        <HeaderButton
-          buttonName="User"
-          handleClick={() => history.push("/user")}
-        />
+        {currentUser ? <HeaderButton buttonName="Create" /> : <></>}
+        {currentUser ? (
+          <HeaderButton
+            buttonName="User"
+            handleClick={() => history.push("/user")}
+          />
+        ) : (
+          <></>
+        )}
         <HeaderButton
           buttonName="Register"
           handleClick={() => history.push("/signup")}
         />
         <HeaderButton
-          buttonName={isLoggedIn ? "Logout" : "Login"}
+          buttonName={currentUser ? "Logout" : "Login"}
           handleClick={
-            isLoggedIn ? signOutFunction : () => history.push("/signin")
+            currentUser ? signOutFunction : () => history.push("/signin")
           }
         />
       </div>

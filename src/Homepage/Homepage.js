@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../Firebase";
 import SelectionButton from "../Global/SelectionButton";
 import Head from "./Head";
 import "./Homepage.css";
 
 function Homepage() {
-  const [currentUser] = useAuthState(auth);
-
   const categoriesArray = [
     "temple",
     "syndicate",
@@ -58,7 +54,7 @@ function Homepage() {
 
   return (
     <div>
-      <Head currentUser={currentUser} />
+      <Head />
       <div className={"homepage-container"}>
         <div className={"box1"}></div>
         <div className={"box2"}>CATEGORIES</div>
