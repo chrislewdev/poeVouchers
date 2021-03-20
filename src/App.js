@@ -6,6 +6,7 @@ import Homepage from "./Homepage/Homepage";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import Userpage from "./UserPage/Userpage";
+import CreateListing from "./CreateListing/CreateListing";
 
 function App() {
   const [currentUser, currentUserLoading] = useAuthState(auth);
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/user" component={Userpage} />
+          <Route exact path="/create" component={CreateListing} />
           <Route path="/" component={Homepage} />
         </UserContext.Provider>
       </Switch>
