@@ -1,0 +1,114 @@
+.cl-background {
+  min-height: 1000px;
+  background-color: #0b0c10;
+  display: flex;
+  justify-content: center;
+}
+
+.cl-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.cl-title {
+  font-size: 34px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #51c9c0;
+}
+
+.cl-body-container {
+  width: 1200px;
+  height: 800px;
+  border: 2px solid #c5c6c7;
+  display: grid;
+  grid-template-rows: 1fr 12fr;
+  grid-template-columns: 2fr 2fr 7fr;
+}
+
+.cl-box-one {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  border-bottom: 2px solid #c5c6c7;
+  border-right: 2px solid #c5c6c7;
+  color: rgba(81, 201, 192, 0.6);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.cl-box-two {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  border-bottom: 2px solid #c5c6c7;
+  border-right: 2px solid #c5c6c7;
+  color: rgba(81, 201, 192, 0.6);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.cl-box-three {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  border-bottom: 2px solid #c5c6c7;
+}
+
+.cl-box-four {
+  grid-row: 2/3;
+  grid-column: 1/2;
+  border-right: 2px solid #c5c6c7;
+}
+
+.cl-box-five {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  border-right: 2px solid #c5c6c7;
+}
+
+.cl-box-six {
+  grid-row: 2/3;
+  grid-column: 3/4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cl-service-title {
+  width: 700px;
+  height: 40px;
+  border: 2px solid #c5c6c7;
+  color: #51c9c0;
+  font-size: 20px;
+  background-color: #1f2833;
+  margin: 10px;
+}
+
+.cl-service-detail {
+  width: 700px;
+  height: 560px;
+  border: 2px solid #c5c6c7;
+  color: #51c9c0;
+  font-size: 14px;
+  background-color: #1f2833;
+  margin: 10px;
+}
+
+.cl-service-submit-button {
+  width: 100px;
+  height: 30px;
+  color: #51c9c0;
+  background-color: #1f2833;
+  border: 1px solid #c5c6c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cl-service-submit-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
