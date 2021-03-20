@@ -2,54 +2,76 @@ import React, { useState } from "react";
 import SelectionButton from "../Global/SelectionButton";
 import Head from "./Head";
 import "./Homepage.css";
+import {
+  categoriesArray,
+  templeArray,
+  syndicateArray,
+  bossArray,
+  benchArray,
+  challengeArray,
+} from "../Global/Arrays";
 
 function Homepage() {
-  const categoriesArray = [
-    "temple",
-    "syndicate",
-    "boss carry",
-    "bench craft",
-    "challenge",
-  ];
+  const [selectedCategories, setSelectedCategories] = useState("");
 
-  const templeArray = [
-    "double corruption",
-    "gem corruption",
-    "sacrifice chamber",
-  ];
+  const [selectedCategoriesArray, setSelectedCategoriesArray] = useState([]);
 
-  const syndicateArray = [
-    "white sockets",
-    "leo slam",
-    "hillock weapon",
-    "hillock armour",
-    "hillock flask",
-    "hillock map",
-  ];
+  const [selectedServices, setSelectedServices] = useState("");
 
-  const bossArray = ["all bosses", "sirus", "uber atziri"];
-
-  const benchArray = ["all crafts", "all crafts except"];
-
-  const challengeArray = ["encounter", "end game grind"];
-
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  // const categoriesRender = categoriesArray.map((category) => (
+  //   <SelectionButton
+  //     buttonName={category}
+  //     handleClick={() => {
+  //       if (category === "temple") setSelectedCategories(templeArray);
+  //       if (category === "syndicate") setSelectedCategories(syndicateArray);
+  //       if (category === "boss carry") setSelectedCategories(bossArray);
+  //       if (category === "bench craft") setSelectedCategories(benchArray);
+  //       if (category === "challenge") setSelectedCategories(challengeArray);
+  //     }}
+  //   />
+  // ));
 
   const categoriesRender = categoriesArray.map((category) => (
     <SelectionButton
       buttonName={category}
       handleClick={() => {
-        if (category === "temple") setSelectedCategories(templeArray);
-        if (category === "syndicate") setSelectedCategories(syndicateArray);
-        if (category === "boss carry") setSelectedCategories(bossArray);
-        if (category === "bench craft") setSelectedCategories(benchArray);
-        if (category === "challenge") setSelectedCategories(challengeArray);
+        if (category === "temple") {
+          setSelectedCategories(category);
+          setSelectedCategoriesArray(templeArray);
+        }
+        if (category === "syndicate") {
+          setSelectedCategories(category);
+          setSelectedCategoriesArray(syndicateArray);
+        }
+        if (category === "boss carry") {
+          setSelectedCategories(category);
+          setSelectedCategoriesArray(bossArray);
+        }
+        if (category === "bench craft") {
+          setSelectedCategories(category);
+          setSelectedCategoriesArray(benchArray);
+        }
+        if (category === "challenge") {
+          setSelectedCategories(category);
+          setSelectedCategoriesArray(challengeArray);
+        }
+
+        setSelectedServices("");
       }}
+      activeButton={selectedCategories}
     />
   ));
 
-  const servicesRender = selectedCategories.map((service) => (
-    <SelectionButton buttonName={service} />
+  // const servicesRender = selectedCategories.map((service) => (
+  //   <SelectionButton buttonName={service} />
+  // ));
+
+  const servicesRender = selectedCategoriesArray.map((service) => (
+    <SelectionButton
+      buttonName={service}
+      handleClick={() => setSelectedServices(service)}
+      activeButton={selectedServices}
+    />
   ));
 
   return (

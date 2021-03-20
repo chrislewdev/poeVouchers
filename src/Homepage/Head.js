@@ -22,7 +22,14 @@ function Head() {
     <div className="head-container">
       <HeadTitle headTitle="poeVouchers" />
       <div className="head-buttons-container">
-        {currentUser ? <HeaderButton buttonName="Create" /> : <></>}
+        {currentUser ? (
+          <HeaderButton
+            buttonName="Create"
+            handleClick={() => history.push("/create")}
+          />
+        ) : (
+          <></>
+        )}
         {currentUser ? (
           <HeaderButton
             buttonName="User"
