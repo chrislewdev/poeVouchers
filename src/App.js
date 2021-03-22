@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/user" component={Userpage} />
           <Route exact path="/create" component={CreateListing} />
-          <Route path="/" component={Homepage} />
+          <Route exact path="/" component={Homepage} />
         </UserContext.Provider>
       </Switch>
     </Router>
