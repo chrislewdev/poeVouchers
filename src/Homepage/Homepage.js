@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { db } from "../Firebase";
+import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import SelectionButton from "../Global/SelectionButton";
 import Head from "./Head";
 import "./Homepage.css";
@@ -10,6 +12,7 @@ import {
   benchArray,
   challengeArray,
 } from "../Global/Arrays";
+import Listing from "./Listing";
 
 function Homepage() {
   const [selectedCategories, setSelectedCategories] = useState("");
@@ -18,18 +21,11 @@ function Homepage() {
 
   const [selectedServices, setSelectedServices] = useState("");
 
-  // const categoriesRender = categoriesArray.map((category) => (
-  //   <SelectionButton
-  //     buttonName={category}
-  //     handleClick={() => {
-  //       if (category === "temple") setSelectedCategories(templeArray);
-  //       if (category === "syndicate") setSelectedCategories(syndicateArray);
-  //       if (category === "boss carry") setSelectedCategories(bossArray);
-  //       if (category === "bench craft") setSelectedCategories(benchArray);
-  //       if (category === "challenge") setSelectedCategories(challengeArray);
-  //     }}
-  //   />
-  // ));
+  const [listingsQuery, setListingsQuery] = useState(null);
+
+  const [value, dataLoading, dataError] = useCollectionDataOnce(listingsQuery);
+
+  const [listingsArray, setListingsArray] = useState([]);
 
   const categoriesRender = categoriesArray.map((category) => (
     <SelectionButton
@@ -57,20 +53,37 @@ function Homepage() {
         }
 
         setSelectedServices("");
+        setListingsArray([]);
       }}
       activeButton={selectedCategories}
     />
   ));
 
-  // const servicesRender = selectedCategories.map((service) => (
-  //   <SelectionButton buttonName={service} />
-  // ));
-
   const servicesRender = selectedCategoriesArray.map((service) => (
     <SelectionButton
       buttonName={service}
-      handleClick={() => setSelectedServices(service)}
+      handleClick={() => {
+        setSelectedServices(service);
+        const query = db
+          .collection("listings")
+          .where("selectedServices", "==", service);
+        setListingsQuery(query);
+      }}
       activeButton={selectedServices}
+    />
+  ));
+
+  useEffect(() => {
+    if (value != undefined) {
+      setListingsArray(value);
+    }
+  }, [value]);
+
+  const listingRender = listingsArray.map((listing) => (
+    <Listing
+      vouches={listing.sellerVouches}
+      price={listing.price}
+      title={listing.title}
     />
   ));
 
@@ -84,7 +97,9 @@ function Homepage() {
         <div className={"box4"}>LISTINGS</div>
         <div className={"box5"}>{categoriesRender}</div>
         <div className={"box6"}>{servicesRender}</div>
-        <div className={"box7"}></div>
+        <div className={"box7"}>
+          {dataLoading ? "loading..." : listingRender}
+        </div>
       </div>
     </div>
   );

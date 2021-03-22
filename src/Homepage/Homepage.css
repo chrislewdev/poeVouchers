@@ -24,6 +24,7 @@
   justify-content: flex-start;
   align-items: center;
   padding-left: 10px;
+  min-width: 204px;
 }
 
 .box3 {
@@ -36,6 +37,7 @@
   justify-content: flex-start;
   align-items: center;
   padding-left: 10px;
+  min-width: 204px;
 }
 
 .box4 {
@@ -64,4 +66,8 @@
 .box7 {
   grid-column: 4/5;
   grid-row: 2/3;
+  /* background-color: yellow;
+  display: flex;
+  justify-content: flex-start;
+  align-content: space-between; */
 }
