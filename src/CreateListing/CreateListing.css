@@ -87,9 +87,19 @@
   margin: 10px;
 }
 
+.cl-service-price {
+  width: 700px;
+  height: 40px;
+  border: 2px solid #c5c6c7;
+  color: #51c9c0;
+  font-size: 20px;
+  background-color: #1f2833;
+  margin: 10px;
+}
+
 .cl-service-detail {
   width: 700px;
-  height: 560px;
+  height: 520px;
   border: 2px solid #c5c6c7;
   color: #51c9c0;
   font-size: 14px;

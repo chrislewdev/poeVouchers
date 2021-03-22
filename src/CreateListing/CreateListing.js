@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import { db } from "../Firebase";
 import SelectionButton from "../Global/SelectionButton";
 import { UserContext } from "../Global/UserContext";
@@ -14,6 +15,35 @@ import {
 
 function CreateListing() {
   const { currentUser, currentUserLoading } = useContext(UserContext);
+
+  const [currentUserQuery, setCurrentUserQuery] = useState(null);
+
+  const [value, dataLoading, dataError] = useCollectionDataOnce(
+    currentUserQuery
+  );
+
+  const [currentUserData, setCurrentUserData] = useState({});
+
+  useEffect(() => {
+    if (currentUser != null) {
+      const userQuery = db
+        .collection("users")
+        .where("userUID", "==", currentUser.uid);
+
+      setCurrentUserQuery(userQuery);
+    }
+  }, [currentUserLoading]);
+
+  useEffect(() => {
+    if (value != undefined) {
+      const currentUserData = {
+        username: value[0].username,
+        vouches: value[0].vouches,
+      };
+
+      setCurrentUserData(currentUserData);
+    }
+  }, [value]);
 
   const [selectedCategories, setSelectedCategories] = useState("");
 
@@ -66,9 +96,13 @@ function CreateListing() {
   const [serviceDetail, setServiceDetail] = useState("");
   const handleChangeServiceDetail = (e) => setServiceDetail(e.target.value);
 
+  const [servicePrice, setServicePrice] = useState("");
+  const handleChangeServicePrice = (e) => setServicePrice(e.target.value);
+
   const resetForm = () => {
     setServiceDetail("");
     setServiceTitle("");
+    setServicePrice("");
   };
 
   const handleSubmitClick = () => {
@@ -76,7 +110,9 @@ function CreateListing() {
       .add({
         title: serviceTitle,
         detail: serviceDetail,
+        price: servicePrice,
         sellerUID: currentUser.uid,
+        sellerVouches: currentUserData.vouches,
         selectedServices: selectedServices,
         // selectedCategories: selectedCategories,
       })
@@ -98,14 +134,25 @@ function CreateListing() {
             <div className="cl-service-title-box">
               <input
                 type="text"
+                placeholder="title here ..."
                 value={serviceTitle}
                 onChange={handleChangeServiceTitle}
                 className="cl-service-title"
               ></input>
             </div>
+            <div className="cl-service-price-box">
+              <input
+                type="text"
+                placeholder="price here ..."
+                value={servicePrice}
+                onChange={handleChangeServicePrice}
+                className="cl-service-price"
+              ></input>
+            </div>
             <div className="cl-service-detail-box">
               <input
                 type="text"
+                placeholder="more details here ..."
                 value={serviceDetail}
                 onChange={handleChangeServiceDetail}
                 className="cl-service-detail"
