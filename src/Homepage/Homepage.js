@@ -27,6 +27,12 @@ function Homepage() {
 
   const [listingsArray, setListingsArray] = useState([]);
 
+  useEffect(() => {
+    if (value != undefined) {
+      setListingsArray(value);
+    }
+  }, [value]);
+
   const categoriesRender = categoriesArray.map((category) => (
     <SelectionButton
       buttonName={category}
@@ -72,12 +78,6 @@ function Homepage() {
       activeButton={selectedServices}
     />
   ));
-
-  useEffect(() => {
-    if (value != undefined) {
-      setListingsArray(value);
-    }
-  }, [value]);
 
   const listingRender = listingsArray.map((listing) => (
     <Listing

@@ -1,8 +1,8 @@
 .selection-button {
   width: 190px;
-  height: 30px;
+  height: 40px;
   margin: 10px;
-  font-size: 15px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,9 +19,9 @@
 
 .selection-button-clicked {
   width: 190px;
-  height: 30px;
+  height: 40px;
   margin: 10px;
-  font-size: 15px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;

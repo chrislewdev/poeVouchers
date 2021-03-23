@@ -19,11 +19,11 @@
 }
 
 .userpage-body-container {
-  width: 1200px;
-  height: 800px;
+  width: 800px;
+  height: 600px;
   border: 2px solid #c5c6c7;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
 }
 
 .userpage-body-box1 {

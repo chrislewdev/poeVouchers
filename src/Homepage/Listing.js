@@ -5,6 +5,7 @@ function Listing(props) {
   return (
     <div className="listing-container">
       <div className="listing-vouches">{props.vouches}</div>
+      <div style={{ marginRight: "10px" }}> - </div>
       <div className="listing-price">{props.price}</div>
       <div className="listing-title">{props.title}</div>
     </div>

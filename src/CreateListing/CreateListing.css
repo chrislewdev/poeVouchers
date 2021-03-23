@@ -19,12 +19,12 @@
 }
 
 .cl-body-container {
-  width: 1200px;
-  height: 800px;
+  width: 1000px;
+  height: 700px;
   border: 2px solid #c5c6c7;
   display: grid;
   grid-template-rows: 1fr 12fr;
-  grid-template-columns: 2fr 2fr 7fr;
+  grid-template-columns: 2fr 2fr 5.3fr;
 }
 
 .cl-box-one {
@@ -78,7 +78,7 @@
 }
 
 .cl-service-title {
-  width: 700px;
+  width: 500px;
   height: 40px;
   border: 2px solid #c5c6c7;
   color: #51c9c0;
@@ -88,7 +88,7 @@
 }
 
 .cl-service-price {
-  width: 700px;
+  width: 500px;
   height: 40px;
   border: 2px solid #c5c6c7;
   color: #51c9c0;
@@ -98,11 +98,11 @@
 }
 
 .cl-service-detail {
-  width: 700px;
-  height: 520px;
+  width: 500px;
+  height: 420px;
   border: 2px solid #c5c6c7;
   color: #51c9c0;
-  font-size: 14px;
+  font-size: 20px;
   background-color: #1f2833;
   margin: 10px;
 }

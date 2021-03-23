@@ -136,6 +136,7 @@ function CreateListing() {
                 type="text"
                 placeholder="title here ..."
                 value={serviceTitle}
+                maxlength="46"
                 onChange={handleChangeServiceTitle}
                 className="cl-service-title"
               ></input>
@@ -145,6 +146,7 @@ function CreateListing() {
                 type="text"
                 placeholder="price here ..."
                 value={servicePrice}
+                maxlength="10"
                 onChange={handleChangeServicePrice}
                 className="cl-service-price"
               ></input>
@@ -154,6 +156,7 @@ function CreateListing() {
                 type="text"
                 placeholder="more details here ..."
                 value={serviceDetail}
+                maxlength="100"
                 onChange={handleChangeServiceDetail}
                 className="cl-service-detail"
               ></input>

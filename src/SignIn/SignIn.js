@@ -46,6 +46,7 @@ function SignIn() {
             <input
               type="text"
               value={email}
+              maxlength="40"
               onChange={handleChangeEmail}
               className={"signin-fields"}
             ></input>
@@ -55,6 +56,7 @@ function SignIn() {
             <input
               type="text"
               value={password}
+              maxlength="20"
               onChange={handleChangePassword}
               className={"signin-fields"}
             ></input>

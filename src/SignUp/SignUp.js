@@ -74,6 +74,7 @@ function SignUp() {
             <input
               type="text"
               value={username}
+              maxlength="12"
               onChange={handleChangeUsername}
               className={"signup-fields"}
             ></input>
@@ -83,6 +84,7 @@ function SignUp() {
             <input
               type="text"
               value={email}
+              maxlength="40"
               onChange={handleChangeEmail}
               className={"signup-fields"}
             ></input>
@@ -92,6 +94,7 @@ function SignUp() {
             <input
               type="text"
               value={password}
+              maxlength="20"
               onChange={handleChangePassword}
               className={"signup-fields"}
             ></input>
