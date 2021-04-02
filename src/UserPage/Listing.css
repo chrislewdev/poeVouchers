@@ -1,0 +1,44 @@
+.listing-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #51c9c0;
+  border: 1px solid #c5c6c7;
+  border-radius: 8px;
+  background-color: #1f2833;
+  height: 40px;
+}
+
+/* .listing-vouches {
+  font-size: 18px;
+  margin-right: 10px;
+  border: 1px solid #c5c6c7;
+  border-radius: 6px;
+  width: 80px;
+  text-align: center;
+  font-weight: bold;
+} */
+
+.listing-price {
+  font-size: 18px;
+  margin-right: 10px;
+  border: 1px solid #c5c6c7;
+  border-radius: 6px;
+  width: 80px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.listing-title {
+  border-left: 1px solid #c5c6c7;
+  padding-left: 10px;
+  font-size: 18px;
+}
+
+.listing-title:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
