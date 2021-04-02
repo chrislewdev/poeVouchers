@@ -13,6 +13,7 @@ import {
   challengeArray,
 } from "../Global/Arrays";
 import Listing from "./Listing";
+import ListingPage from "./ListingPage";
 
 function Homepage() {
   const [selectedCategories, setSelectedCategories] = useState("");
@@ -26,6 +27,10 @@ function Homepage() {
   const [value, dataLoading, dataError] = useCollectionDataOnce(listingsQuery);
 
   const [listingsArray, setListingsArray] = useState([]);
+
+  const [listingPage, toggleListingPage] = useState(false);
+
+  const [listingObject, setListingObject] = useState({});
 
   useEffect(() => {
     if (value != undefined) {
@@ -84,10 +89,33 @@ function Homepage() {
       vouches={listing.sellerVouches}
       price={listing.price}
       title={listing.title}
+      detail={listing.detail}
+      sellerUID={listing.sellerUID}
+      sellerUsername={listing.sellerUsername}
+      vouched={listing.vouched}
+      vouchedBy={listing.vouchedBy}
+      docID={listing.docID}
+      handleClick={(object) => {
+        setListingObject(object);
+        toggleListingPage(true);
+      }}
     />
   ));
 
-  return (
+  return listingPage ? (
+    <ListingPage
+      toggleListingPage={() => toggleListingPage(false)}
+      vouches={listingObject.vouches}
+      price={listingObject.price}
+      title={listingObject.title}
+      detail={listingObject.detail}
+      sellerUID={listingObject.sellerUID}
+      sellerUsername={listingObject.sellerUsername}
+      vouched={listingObject.vouched}
+      vouchedBy={listingObject.vouchedBy}
+      docID={listingObject.docID}
+    />
+  ) : (
     <div>
       <Head />
       <div className={"homepage-container"}>

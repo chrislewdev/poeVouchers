@@ -39,6 +39,7 @@ function CreateListing() {
       const currentUserData = {
         username: value[0].username,
         vouches: value[0].vouches,
+        listingCreated: value[0].listingCreated,
       };
 
       setCurrentUserData(currentUserData);
@@ -107,15 +108,28 @@ function CreateListing() {
 
   const handleSubmitClick = () => {
     db.collection("listings")
-      .add({
+      .doc(`${currentUser.uid}-${currentUserData.listingCreated + 1}`)
+      .set({
         title: serviceTitle,
         detail: serviceDetail,
         price: servicePrice,
         sellerUID: currentUser.uid,
+        sellerUsername: currentUserData.username,
         sellerVouches: currentUserData.vouches,
         selectedServices: selectedServices,
+        vouched: false,
+        vouchedBy: "",
+        docID: `${currentUser.uid}-${currentUserData.listingCreated + 1}`,
         // selectedCategories: selectedCategories,
       })
+      .then(() =>
+        db
+          .collection("users")
+          .doc(`${currentUser.uid}`)
+          .update({
+            listingCreated: currentUserData.listingCreated + 1,
+          })
+      )
       .then(() => alert("Listing successful"))
       .then(resetForm);
   };

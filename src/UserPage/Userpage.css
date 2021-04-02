@@ -10,12 +10,16 @@
   flex-direction: column;
 }
 
-.userpage-title {
+/* .userpage-title {
   font-size: 34px;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
   color: #51c9c0;
+} */
+
+.userpage-back-button {
+  margin: 20px 0px;
 }
 
 .userpage-body-container {

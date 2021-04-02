@@ -37,3 +37,8 @@
   padding-left: 10px;
   font-size: 18px;
 }
+
+.listing-title:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}

@@ -23,6 +23,8 @@ function SignUp() {
       uid: "",
       createdAt: "",
       vouches: 0,
+      vouchHistory: [],
+      listingCreated: 0,
     };
 
     auth
@@ -57,6 +59,8 @@ function SignUp() {
                 today.getMonth() + 1
               } - ${today.getDate()}`,
               vouches: 0,
+              vouchHistory: [],
+              listingCreated: 0,
             })
             .then(() => alert("Signup Successful"))
             .then(() => history.push("/"));
