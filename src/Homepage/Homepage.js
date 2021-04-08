@@ -30,7 +30,7 @@ function Homepage() {
 
   const [listingPage, toggleListingPage] = useState(false);
 
-  const [listingObject, setListingObject] = useState({});
+  const [currentDocID, setCurrentDocID] = useState("");
 
   useEffect(() => {
     if (value != undefined) {
@@ -86,17 +86,9 @@ function Homepage() {
 
   const listingRender = listingsArray.map((listing) => (
     <Listing
-      vouches={listing.sellerVouches}
-      price={listing.price}
-      title={listing.title}
-      detail={listing.detail}
-      sellerUID={listing.sellerUID}
-      sellerUsername={listing.sellerUsername}
-      vouched={listing.vouched}
-      vouchedBy={listing.vouchedBy}
-      docID={listing.docID}
-      handleClick={(object) => {
-        setListingObject(object);
+      listing={listing}
+      handleClick={(docID) => {
+        setCurrentDocID(docID);
         toggleListingPage(true);
       }}
     />
@@ -105,15 +97,7 @@ function Homepage() {
   return listingPage ? (
     <ListingPage
       toggleListingPage={() => toggleListingPage(false)}
-      vouches={listingObject.vouches}
-      price={listingObject.price}
-      title={listingObject.title}
-      detail={listingObject.detail}
-      sellerUID={listingObject.sellerUID}
-      sellerUsername={listingObject.sellerUsername}
-      vouched={listingObject.vouched}
-      vouchedBy={listingObject.vouchedBy}
-      docID={listingObject.docID}
+      docID={currentDocID}
     />
   ) : (
     <div>

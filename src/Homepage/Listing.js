@@ -1,30 +1,14 @@
 import React from "react";
 import "./Listing.css";
 
-function Listing(props) {
-  const listingObject = {
-    vouches: props.vouches,
-    price: props.price,
-    title: props.title,
-    detail: props.detail,
-    sellerUID: props.sellerUID,
-    sellerUsername: props.sellerUsername,
-    vouched: props.vouched,
-    vouchedBy: props.vouchedBy,
-    docID: props.docID,
-  };
-
-  const handleOnClick = () => {
-    props.handleClick(listingObject);
-  };
-
+function Listing({ listing, handleClick }) {
   return (
     <div className="listing-container">
-      <div className="listing-vouches">{listingObject.vouches}</div>
+      <div className="listing-vouches">{listing.sellerVouches}</div>
       <div style={{ marginRight: "10px" }}> - </div>
-      <div className="listing-price">{listingObject.price}</div>
-      <div className="listing-title" onClick={handleOnClick}>
-        {listingObject.title}
+      <div className="listing-price">{listing.price}</div>
+      <div className="listing-title" onClick={() => handleClick(listing.docID)}>
+        {listing.title}
       </div>
     </div>
   );
