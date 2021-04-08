@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
+import { v4 as uuidv4 } from "uuid";
 import { db } from "../Firebase";
 import SelectionButton from "../Global/SelectionButton";
 import { UserContext } from "../Global/UserContext";
@@ -109,8 +110,9 @@ function CreateListing() {
   };
 
   const handleSubmitClick = () => {
+    const newDocID = uuidv4();
     db.collection("listings")
-      .doc(`${currentUser.uid}-${currentUserData[0].listingCreated + 1}`)
+      .doc(newDocID)
       .set({
         title: serviceTitle,
         detail: serviceDetail,
@@ -122,7 +124,7 @@ function CreateListing() {
         vouched: false,
         vouchedByUsername: "",
         vouchedByUID: "",
-        docID: `${currentUser.uid}-${currentUserData[0].listingCreated + 1}`,
+        docID: newDocID,
       })
       .then(() =>
         db
