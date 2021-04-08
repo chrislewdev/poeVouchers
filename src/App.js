@@ -16,9 +16,11 @@ function App() {
 
   const [currentUserQuery, setCurrentUserQuery] = useState(null);
 
-  const [currentUserData, dataLoading, dataError] = useCollectionData(
-    currentUserQuery
-  );
+  const [
+    currentUserData,
+    currentUserDataLoading,
+    dataError,
+  ] = useCollectionData(currentUserQuery);
 
   useEffect(() => {
     if (currentUser != null) {
@@ -39,6 +41,7 @@ function App() {
             currentUserLoading,
             currentUserQuery,
             currentUserData,
+            currentUserDataLoading,
           }}
         >
           <Route exact path="/signup" component={SignUp} />

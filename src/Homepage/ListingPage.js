@@ -5,10 +5,10 @@ import { UserContext } from "../Global/UserContext";
 import HeaderButton from "../Global/HeaderButton";
 import "./ListingPage.css";
 
-function ListingPage(props) {
+function ListingPage({ toggleListingPage, docID, vouches }) {
   const [listing, setListing] = useState({});
 
-  const query = db.collection("listings").where("docID", "==", props.docID);
+  const query = db.collection("listings").where("docID", "==", docID);
 
   const [value, dataLoading, dataError] = useCollectionData(query);
 
@@ -34,15 +34,17 @@ function ListingPage(props) {
 
   const handleVouchClick = () => {
     if (listing.vouched == false) {
-      db.collection("listings").doc(props.docID).update({
-        vouched: true,
-        vouchedByUsername: currentUserData[0].username,
-        vouchedByUID: currentUserData[0].userUID,
-      });
+      if (listing.sellerUsername !== currentUserData[0].username) {
+        db.collection("listings").doc(docID).update({
+          vouched: true,
+          vouchedByUsername: currentUserData[0].username,
+          vouchedByUID: currentUserData[0].userUID,
+        });
+      }
     }
     if (listing.vouched == true) {
       if (listing.vouchedByUID == currentUserData[0].userUID) {
-        db.collection("listings").doc(props.docID).update({
+        db.collection("listings").doc(docID).update({
           vouched: false,
           vouchedByUsername: "",
           vouchedByUID: "",
@@ -56,12 +58,12 @@ function ListingPage(props) {
       <div className="lp-wrapper">
         {/* <div className="lp-title">Listing</div> */}
         <div className="lp-back-button">
-          <HeaderButton buttonName="<" handleClick={props.toggleListingPage} />
+          <HeaderButton buttonName="<" handleClick={toggleListingPage} />
         </div>
         <div className="lp-body-container">
           <div className="lp-box-one">{listing.title}</div>
           <div className="lp-box-two">{listing.sellerUsername}</div>
-          <div className="lp-box-three">{`Vouches: ${currentUserData[0].vouches}`}</div>
+          <div className="lp-box-three">{`Vouches: ${vouches}`}</div>
           <div className="lp-box-four">Discord: aaaaaaaaaaaa </div>
           <div className="lp-box-five">POE Profile</div>
           <div className="lp-box-six">{listing.price}</div>

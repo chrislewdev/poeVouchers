@@ -32,6 +32,8 @@ function Homepage() {
 
   const [currentDocID, setCurrentDocID] = useState("");
 
+  const [currentListingVouches, setCurrentListingVouches] = useState("");
+
   useEffect(() => {
     if (value != undefined) {
       setListingsArray(value);
@@ -87,8 +89,9 @@ function Homepage() {
   const listingRender = listingsArray.map((listing) => (
     <Listing
       listing={listing}
-      handleClick={(docID) => {
+      handleClick={(docID, vouches) => {
         setCurrentDocID(docID);
+        setCurrentListingVouches(vouches);
         toggleListingPage(true);
       }}
     />
@@ -98,6 +101,7 @@ function Homepage() {
     <ListingPage
       toggleListingPage={() => toggleListingPage(false)}
       docID={currentDocID}
+      vouches={currentListingVouches}
     />
   ) : (
     <div>
