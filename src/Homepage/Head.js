@@ -24,6 +24,7 @@ function Head() {
       <div className="head-buttons-container">
         {currentUser ? (
           <HeaderButton
+            style={{ marginRight: "32px" }}
             buttonName="Create"
             handleClick={() => history.push("/create")}
           />
@@ -32,6 +33,7 @@ function Head() {
         )}
         {currentUser ? (
           <HeaderButton
+            style={{ marginLeft: "32px" }}
             buttonName="User"
             handleClick={() => history.push("/user")}
           />
@@ -39,10 +41,12 @@ function Head() {
           <></>
         )}
         <HeaderButton
+          style={{ marginRight: "32px" }}
           buttonName="Register"
           handleClick={() => history.push("/signup")}
         />
         <HeaderButton
+          style={{ marginRight: "32px" }}
           buttonName={currentUser ? "Logout" : "Login"}
           handleClick={
             currentUser ? signOutFunction : () => history.push("/signin")

@@ -1,5 +1,5 @@
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { UserContext } from "./Global/UserContext";
 import { auth } from "./Firebase";
@@ -16,7 +16,7 @@ function App() {
 
   const [currentUserQuery, setCurrentUserQuery] = useState(null);
 
-  const [currentUserData, dataLoading, dataError] = useCollectionDataOnce(
+  const [currentUserData, dataLoading, dataError] = useCollectionData(
     currentUserQuery
   );
 
@@ -28,7 +28,7 @@ function App() {
 
       setCurrentUserQuery(userQuery);
     }
-  }, [currentUserLoading]);
+  }, [currentUserLoading, currentUser]);
 
   return (
     <Router>
