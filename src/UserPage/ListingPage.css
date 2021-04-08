@@ -34,33 +34,33 @@
   grid-column: 1/2;
   grid-row: 2/3;
   color: #51c9c0;
-  padding: 4px;
+  padding: 6px;
   font-size: 28px;
   border-bottom: 2px solid #c5c6c7;
   border-right: 2px solid #c5c6c7;
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: center; */
+  /* justify-content: center; */
 }
 
 .up-lp-box-three {
   grid-column: 1/2;
   grid-row: 3/4;
   color: #51c9c0;
-  padding: 4px;
+  padding: 6px;
   font-size: 28px;
   border-bottom: 2px solid #c5c6c7;
   border-right: 2px solid #c5c6c7;
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: center; */
+  /* justify-content: center; */
 }
 
 .up-lp-box-four {
   grid-column: 1/2;
   grid-row: 4/5;
   color: #51c9c0;
-  padding: 4px;
+  padding: 6px;
   font-size: 24px;
   border-right: 2px solid #c5c6c7;
   /* display: flex;
