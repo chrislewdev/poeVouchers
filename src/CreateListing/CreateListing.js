@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
+import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../Firebase";
 import SelectionButton from "../Global/SelectionButton";
@@ -15,39 +14,7 @@ import {
 } from "../Global/Arrays";
 
 function CreateListing() {
-  const { currentUser, currentUserLoading, currentUserData } = useContext(
-    UserContext
-  );
-
-  // const [currentUserQuery, setCurrentUserQuery] = useState(null);
-
-  // const [value, dataLoading, dataError] = useCollectionDataOnce(
-  //   currentUserQuery
-  // );
-
-  // const [currentUserData, setCurrentUserData] = useState({});
-
-  // useEffect(() => {
-  //   if (currentUser != null) {
-  //     const userQuery = db
-  //       .collection("users")
-  //       .where("userUID", "==", currentUser.uid);
-
-  //     setCurrentUserQuery(userQuery);
-  //   }
-  // }, [currentUserLoading]);
-
-  // useEffect(() => {
-  //   if (value != undefined) {
-  //     const currentUserData = {
-  //       username: value[0].username,
-  //       vouches: value[0].vouches,
-  //       listingCreated: value[0].listingCreated,
-  //     };
-
-  //     setCurrentUserData(currentUserData);
-  //   }
-  // }, [value]);
+  const { currentUser, currentUserData } = useContext(UserContext);
 
   const [selectedCategories, setSelectedCategories] = useState("");
 

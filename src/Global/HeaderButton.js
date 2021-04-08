@@ -1,10 +1,10 @@
 import React from "react";
 import "./HeaderButton.css";
 
-function HeaderButton(props) {
+function HeaderButton({ buttonName, handleClick }) {
   return (
-    <div className="header-button" onClick={props.handleClick}>
-      {props.buttonName}
+    <div className="header-button" onClick={handleClick}>
+      {buttonName}
     </div>
   );
 }

@@ -1,17 +1,17 @@
 import React from "react";
 import "./SelectionButton.css";
 
-function SelectionButton(props) {
+function SelectionButton({ buttonName, activeButton, handleClick }) {
   return (
     <div
       className={
-        props.activeButton === props.buttonName
+        activeButton === buttonName
           ? "selection-button-clicked"
           : "selection-button"
       }
-      onClick={props.handleClick}
+      onClick={handleClick}
     >
-      {props.buttonName}
+      {buttonName}
     </div>
   );
 }
