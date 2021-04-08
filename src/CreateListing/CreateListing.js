@@ -14,37 +14,39 @@ import {
 } from "../Global/Arrays";
 
 function CreateListing() {
-  const { currentUser, currentUserLoading } = useContext(UserContext);
-
-  const [currentUserQuery, setCurrentUserQuery] = useState(null);
-
-  const [value, dataLoading, dataError] = useCollectionDataOnce(
-    currentUserQuery
+  const { currentUser, currentUserLoading, currentUserData } = useContext(
+    UserContext
   );
 
-  const [currentUserData, setCurrentUserData] = useState({});
+  // const [currentUserQuery, setCurrentUserQuery] = useState(null);
 
-  useEffect(() => {
-    if (currentUser != null) {
-      const userQuery = db
-        .collection("users")
-        .where("userUID", "==", currentUser.uid);
+  // const [value, dataLoading, dataError] = useCollectionDataOnce(
+  //   currentUserQuery
+  // );
 
-      setCurrentUserQuery(userQuery);
-    }
-  }, [currentUserLoading]);
+  // const [currentUserData, setCurrentUserData] = useState({});
 
-  useEffect(() => {
-    if (value != undefined) {
-      const currentUserData = {
-        username: value[0].username,
-        vouches: value[0].vouches,
-        listingCreated: value[0].listingCreated,
-      };
+  // useEffect(() => {
+  //   if (currentUser != null) {
+  //     const userQuery = db
+  //       .collection("users")
+  //       .where("userUID", "==", currentUser.uid);
 
-      setCurrentUserData(currentUserData);
-    }
-  }, [value]);
+  //     setCurrentUserQuery(userQuery);
+  //   }
+  // }, [currentUserLoading]);
+
+  // useEffect(() => {
+  //   if (value != undefined) {
+  //     const currentUserData = {
+  //       username: value[0].username,
+  //       vouches: value[0].vouches,
+  //       listingCreated: value[0].listingCreated,
+  //     };
+
+  //     setCurrentUserData(currentUserData);
+  //   }
+  // }, [value]);
 
   const [selectedCategories, setSelectedCategories] = useState("");
 
@@ -108,26 +110,26 @@ function CreateListing() {
 
   const handleSubmitClick = () => {
     db.collection("listings")
-      .doc(`${currentUser.uid}-${currentUserData.listingCreated + 1}`)
+      .doc(`${currentUser.uid}-${currentUserData[0].listingCreated + 1}`)
       .set({
         title: serviceTitle,
         detail: serviceDetail,
         price: servicePrice,
         sellerUID: currentUser.uid,
-        sellerUsername: currentUserData.username,
-        sellerVouches: currentUserData.vouches,
+        sellerUsername: currentUserData[0].username,
+        sellerVouches: currentUserData[0].vouches,
         selectedServices: selectedServices,
         vouched: false,
-        vouchedBy: "",
-        docID: `${currentUser.uid}-${currentUserData.listingCreated + 1}`,
-        // selectedCategories: selectedCategories,
+        vouchedByUsername: "",
+        vouchedByUID: "",
+        docID: `${currentUser.uid}-${currentUserData[0].listingCreated + 1}`,
       })
       .then(() =>
         db
           .collection("users")
           .doc(`${currentUser.uid}`)
           .update({
-            listingCreated: currentUserData.listingCreated + 1,
+            listingCreated: currentUserData[0].listingCreated + 1,
           })
       )
       .then(() => alert("Listing successful"))
