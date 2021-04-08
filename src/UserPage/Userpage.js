@@ -15,21 +15,34 @@ function Userpage() {
 
   const [currentDocID, setCurrentDocID] = useState("");
 
-  const { currentUser, currentUserData } = useContext(UserContext);
+  const { currentUser, currentUserData, currentUserDataLoading } = useContext(
+    UserContext
+  );
 
-  const listingREF = db
-    .collection("listings")
-    .where("sellerUID", "==", currentUser.uid);
+  const [listingREF, setListingREF] = useState(null);
 
-  const [listingValue, listingDataLoading] = useCollectionData(listingREF);
+  useEffect(() => {
+    if (currentUserData !== undefined) {
+      const listingREF = db
+        .collection("listings")
+        .where("sellerUID", "==", currentUserData[0].userUID);
+      setListingREF(listingREF);
+    }
+  }, [currentUserData]);
+
+  useEffect(() => {
+    if (currentUserData != undefined) console.log(currentUserData[0]);
+  }, [currentUserData]);
+
+  const [listingData, listingDataLoading] = useCollectionData(listingREF);
 
   const [listingsArray, setListingsArray] = useState([]);
 
   useEffect(() => {
-    if (listingValue != undefined) {
-      setListingsArray(listingValue);
+    if (listingData != undefined) {
+      setListingsArray(listingData);
     }
-  }, [listingValue]);
+  }, [listingData]);
 
   const listingRender = listingsArray.map((listing) => (
     <Listing
@@ -56,13 +69,15 @@ function Userpage() {
         <div className="userpage-body-container">
           <div className="userpage-body-box1">
             <div className="userpage-username">
-              {currentUserData[0].username}
+              {currentUserData != null ? currentUserData[0].username : "-"}
             </div>
             <div className="userpage-vouches">
-              {`vouches:  ${currentUserData[0].vouches}`}
+              {currentUserData != null ? currentUserData[0].vouches : "-"}
             </div>
             <div className="userpage-vouches">
-              {`created:  ${currentUserData[0].listingCreated}`}
+              {currentUserData != null
+                ? currentUserData[0].listingCreated
+                : "-"}
             </div>
           </div>
           <div className="userpage-body-box2">{listingRender}</div>
