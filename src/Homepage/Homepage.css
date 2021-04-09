@@ -1,11 +1,16 @@
+.homepage {
+}
+
 .homepage-container {
-  height: 1000px;
-  margin-top: 72px;
-  background-color: #0b0c10;
+  /* min-height: 600px; */
+  /* height: auto; */
+  /* margin-top: 72px; */
+  /* background-color: #0b0c10; */
   display: grid;
   grid-template-columns: 0.1fr 0.6fr 0.6fr 4fr;
-  grid-template-rows: 1fr 20fr;
+  grid-template-rows: 1.8fr 20fr;
   color: #51c9c0;
+  border-bottom: 1px solid #c5c6c7;
 }
 
 .box1 {
@@ -21,10 +26,8 @@
   border-bottom: 1px solid #c5c6c7;
   color: rgba(81, 201, 192, 0.6);
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   padding-left: 10px;
-  min-width: 204px;
 }
 
 .box3 {
@@ -34,10 +37,8 @@
   border-bottom: 1px solid #c5c6c7;
   color: rgba(81, 201, 192, 0.6);
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   padding-left: 10px;
-  min-width: 204px;
 }
 
 .box4 {
@@ -46,7 +47,6 @@
   border-bottom: 1px solid #c5c6c7;
   color: rgba(81, 201, 192, 0.6);
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   padding-left: 10px;
 }
@@ -55,19 +55,56 @@
   grid-column: 2/3;
   grid-row: 2/3;
   border-right: 1px solid #c5c6c7;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .box6 {
   grid-column: 3/4;
   grid-row: 2/3;
   border-right: 1px solid #c5c6c7;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .box7 {
   grid-column: 4/5;
   grid-row: 2/3;
-  /* background-color: yellow;
-  display: flex;
-  justify-content: flex-start;
-  align-content: space-between; */
 }
+
+.pagination-container {
+  width: 80%;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  /* background-color: yellow; */
+  list-style: none;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.pagination-container a {
+  padding: 6px;
+  margin-right: 14px;
+  border: 1px solid #c5c6c7;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination-container a:hover {
+  color: #0b0c10;
+  background-color: rgba(81, 201, 192, 0.6);
+}
+
+.active-button {
+  color: #0b0c10;
+  background-color: rgba(81, 201, 192, 0.6);
+}
+
+/* .disable-button {
+  display: none;
+} */

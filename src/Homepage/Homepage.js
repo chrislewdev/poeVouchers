@@ -14,6 +14,7 @@ import {
 } from "../Global/Arrays";
 import Listing from "./Listing";
 import ListingPage from "./ListingPage";
+import ReactPaginate from "react-paginate";
 
 function Homepage() {
   const [selectedCategories, setSelectedCategories] = useState("");
@@ -33,6 +34,14 @@ function Homepage() {
   const [currentDocID, setCurrentDocID] = useState("");
 
   const [currentListingVouches, setCurrentListingVouches] = useState("");
+
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const usersPerPage = 10;
+  const pagesVisited = pageNumber * usersPerPage;
+  const pageCount = Math.ceil(listingsArray.length / usersPerPage);
+
+  const onPageChange = ({ selected }) => setPageNumber(selected);
 
   useEffect(() => {
     if (value != undefined) {
@@ -86,16 +95,18 @@ function Homepage() {
     />
   ));
 
-  const listingRender = listingsArray.map((listing) => (
-    <Listing
-      listing={listing}
-      handleClick={(docID, vouches) => {
-        setCurrentDocID(docID);
-        setCurrentListingVouches(vouches);
-        toggleListingPage(true);
-      }}
-    />
-  ));
+  const listingRender = listingsArray
+    .slice(pagesVisited, pagesVisited + usersPerPage)
+    .map((listing) => (
+      <Listing
+        listing={listing}
+        handleClick={(docID, vouches) => {
+          setCurrentDocID(docID);
+          setCurrentListingVouches(vouches);
+          toggleListingPage(true);
+        }}
+      />
+    ));
 
   return listingPage ? (
     <ListingPage
@@ -104,13 +115,27 @@ function Homepage() {
       vouches={currentListingVouches}
     />
   ) : (
-    <div>
+    <div className="homepage">
       <Head />
       <div className={"homepage-container"}>
         <div className={"box1"}></div>
         <div className={"box2"}>CATEGORIES</div>
         <div className={"box3"}>SERVICES</div>
-        <div className={"box4"}>LISTINGS</div>
+        <div className={"box4"}>
+          {!dataLoading && (
+            <ReactPaginate
+              pageCount={pageCount}
+              onPageChange={onPageChange}
+              previousLabel={"PREV"}
+              nextLabel={"NEXT"}
+              containerClassName={"pagination-container"}
+              activeLinkClassName={"active-button"}
+              disabledClassName={"disable-button"}
+              // previousLinkClassName={listingsArray == [] && "disable-button"}
+              // nextLinkClassName={listingsArray == [] && "disable-button"}
+            />
+          )}
+        </div>
         <div className={"box5"}>{categoriesRender}</div>
         <div className={"box6"}>{servicesRender}</div>
         <div className={"box7"}>
