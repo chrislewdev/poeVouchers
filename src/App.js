@@ -1,6 +1,11 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import { UserContext } from "./Global/UserContext";
 import { auth } from "./Firebase";
 import Homepage from "./Homepage/Homepage";
@@ -13,6 +18,8 @@ import { db } from "./Firebase";
 
 function App() {
   const [currentUser, currentUserLoading] = useAuthState(auth);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [currentUserQuery, setCurrentUserQuery] = useState(null);
 
@@ -32,26 +39,52 @@ function App() {
     }
   }, [currentUserLoading, currentUser]);
 
+  useEffect(() => {
+    if (currentUser != null) {
+      setIsLoggedIn(true);
+    }
+  });
+
+  useEffect(() => {
+    if (currentUser == null) {
+      setIsLoggedIn(false);
+    }
+  });
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
+
   return (
-    <Router>
-      <Switch>
-        <UserContext.Provider
-          value={{
-            currentUser,
-            currentUserLoading,
-            currentUserQuery,
-            currentUserData,
-            currentUserDataLoading,
-          }}
-        >
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/signin" component={SignIn} />
-          <Route exact path="/user" component={Userpage} />
-          <Route exact path="/create" component={CreateListing} />
-          <Route exact path="/" component={Homepage} />
-        </UserContext.Provider>
-      </Switch>
-    </Router>
+    <UserContext.Provider
+      value={{
+        currentUser,
+        currentUserLoading,
+        currentUserQuery,
+        currentUserData,
+        currentUserDataLoading,
+        isLoggedIn,
+      }}
+    >
+      {currentUserLoading ? (
+        <></>
+      ) : (
+        <Router>
+          {isLoggedIn == true ? (
+            <Switch>
+              {/* <Route exact path="/signup" component={SignUp} /> */}
+              {/* <Route exact path="/signin" component={SignIn} /> */}
+              <Route exact path="/user" component={Userpage} />
+              <Route exact path="/create" component={CreateListing} />
+              <Route path="/" component={Homepage} />
+            </Switch>
+          ) : (
+            // <Redirect to="/signin" />
+            <Route path="/" component={SignIn} />
+          )}
+        </Router>
+      )}
+    </UserContext.Provider>
   );
 }
 
