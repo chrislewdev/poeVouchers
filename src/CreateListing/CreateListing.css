@@ -61,12 +61,20 @@
   grid-row: 2/3;
   grid-column: 1/2;
   border-right: 2px solid #c5c6c7;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 200px;
 }
 
 .cl-box-five {
   grid-row: 2/3;
   grid-column: 2/3;
   border-right: 2px solid #c5c6c7;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 200px;
 }
 
 .cl-box-six {

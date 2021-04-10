@@ -30,6 +30,10 @@ function App() {
   ] = useCollectionData(currentUserQuery);
 
   useEffect(() => {
+    console.log(currentUserData);
+  });
+
+  useEffect(() => {
     if (currentUser != null) {
       const userQuery = db
         .collection("users")

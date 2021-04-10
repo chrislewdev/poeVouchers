@@ -30,10 +30,6 @@ function Userpage() {
     }
   }, [currentUserData]);
 
-  useEffect(() => {
-    if (currentUserData != undefined) console.log(currentUserData[0]);
-  }, [currentUserData]);
-
   const [listingData, listingDataLoading] = useCollectionData(listingREF);
 
   const [listingsArray, setListingsArray] = useState([]);

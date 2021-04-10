@@ -77,32 +77,36 @@ function CreateListing() {
   };
 
   const handleSubmitClick = () => {
-    const newDocID = uuidv4();
-    db.collection("listings")
-      .doc(newDocID)
-      .set({
-        title: serviceTitle,
-        detail: serviceDetail,
-        price: servicePrice,
-        sellerUID: currentUser.uid,
-        sellerUsername: currentUserData[0].username,
-        sellerVouches: currentUserData[0].vouches,
-        selectedServices: selectedServices,
-        vouched: false,
-        vouchedByUsername: "",
-        vouchedByUID: "",
-        docID: newDocID,
-      })
-      .then(() =>
-        db
-          .collection("users")
-          .doc(`${currentUser.uid}`)
-          .update({
-            listingCreated: currentUserData[0].listingCreated + 1,
-          })
-      )
-      .then(() => alert("Listing successful"))
-      .then(resetForm);
+    if (currentUserData[0].listingCreated < 5) {
+      const newDocID = uuidv4();
+      db.collection("listings")
+        .doc(newDocID)
+        .set({
+          title: serviceTitle,
+          detail: serviceDetail,
+          price: servicePrice,
+          sellerUID: currentUser.uid,
+          sellerUsername: currentUserData[0].username,
+          sellerVouches: currentUserData[0].vouches,
+          selectedServices: selectedServices,
+          vouched: false,
+          vouchedByUsername: "",
+          vouchedByUID: "",
+          docID: newDocID,
+        })
+        .then(() =>
+          db
+            .collection("users")
+            .doc(`${currentUser.uid}`)
+            .update({
+              listingCreated: currentUserData[0].listingCreated + 1,
+            })
+        )
+        .then(() => alert("Listing successful"))
+        .then(resetForm);
+    } else {
+      alert("You cannot create more than 5 listings !");
+    }
   };
 
   return (
@@ -121,7 +125,7 @@ function CreateListing() {
                 type="text"
                 placeholder="title here ..."
                 value={serviceTitle}
-                maxlength="46"
+                maxlength="40"
                 onChange={handleChangeServiceTitle}
                 className="cl-service-title"
               ></input>
@@ -131,7 +135,7 @@ function CreateListing() {
                 type="text"
                 placeholder="price here ..."
                 value={servicePrice}
-                maxlength="10"
+                maxLength="6"
                 onChange={handleChangeServicePrice}
                 className="cl-service-price"
               ></input>
@@ -141,7 +145,7 @@ function CreateListing() {
                 type="text"
                 placeholder="more details here ..."
                 value={serviceDetail}
-                maxlength="100"
+                maxLength="100"
                 onChange={handleChangeServiceDetail}
                 className="cl-service-detail"
               ></input>

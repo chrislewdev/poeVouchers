@@ -103,7 +103,8 @@ function ListingPage({ docID, toggleListingPage }) {
     db.collection("users")
       .doc(currentUserData[0].userUID)
       .update({
-        listingCreated: currentUserData[0].listingCreated--,
+        // listingCreated: currentUserData[0].listingCreated--,
+        listingCreated: 0,
       })
       .then(() => {
         // window.location.reload();
