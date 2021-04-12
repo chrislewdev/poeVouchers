@@ -4,6 +4,7 @@ import homepagepng from "../Assets/Homepage.png";
 import profilepagepng from "../Assets/Profilepage.png";
 import userlistingpagepng from "../Assets/UserListingpage.png";
 import createpng from "../Assets/Create.png";
+import listingpng from "../Assets/Listing.png";
 
 function HowToPage() {
   return (
@@ -57,6 +58,21 @@ function HowToPage() {
             </div>
           </div>
           <img src={homepagepng} alt="homepageimage" />
+          <div className="howto-content-wrapper">
+            <div className="howto-heavy">LISTING</div>
+            <div className="howto-light">
+              You can view details of the listing here
+              <br />
+              1. Listing title, price, more details
+              <br />
+              2. Seller's username, total vouches, discord
+              <br />
+              3. A link to seller's official POE profile
+              <br />
+              *REMEMBER to VOUCH your seller after the service is completed
+            </div>
+          </div>
+          <img src={listingpng} alt="listingimage" />
           <div className="howto-content-wrapper">
             <div className="howto-heavy">PROFILE</div>
             <div className="howto-light">
