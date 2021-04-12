@@ -82,11 +82,9 @@
   height: 40px;
   padding: 0;
   margin: 0;
-  /* background-color: yellow; */
   list-style: none;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .pagination-container a {
@@ -106,7 +104,3 @@
   color: #0b0c10;
   background-color: rgba(81, 201, 192, 0.6);
 }
-
-/* .disable-button {
-  display: none;
-} */

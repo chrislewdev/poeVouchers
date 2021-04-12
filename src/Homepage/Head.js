@@ -45,11 +45,6 @@ function Head() {
         ) : (
           <></>
         )}
-        {/* <HeaderButton
-          style={{ marginRight: "32px" }}
-          buttonName="Register"
-          handleClick={() => history.push("/signup")}
-        /> */}
         <HeaderButton
           style={{ marginRight: "32px" }}
           buttonName={currentUser ? "Logout" : "Login"}

@@ -40,7 +40,6 @@
   border-right: 2px solid #c5c6c7;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .up-lp-box-three {
@@ -53,7 +52,6 @@
   border-right: 2px solid #c5c6c7;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .up-lp-box-four {
@@ -63,9 +61,6 @@
   padding: 6px;
   font-size: 24px;
   border-right: 2px solid #c5c6c7;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
 }
 
 .up-lp-box-five {

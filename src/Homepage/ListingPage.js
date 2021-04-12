@@ -66,8 +66,7 @@ function ListingPage({ toggleListingPage, docID, vouches }) {
     <></>
   ) : value.length !== 0 ? (
     <div className="lp-background">
-      <div className="lp-wrapper">
-        {/* <div className="lp-title">Listing</div> */}
+      <div>
         <div className="lp-back-button">
           <HeaderButton buttonName="<" handleClick={toggleListingPage} />
         </div>
