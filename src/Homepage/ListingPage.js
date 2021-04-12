@@ -88,6 +88,8 @@ function ListingPage({ toggleListingPage, docID, vouches }) {
                 ? listing.vouchedByUID === currentUserData[0].userUID
                   ? "unvouch"
                   : "vouched"
+                : listing.sellerUID === currentUserData[0].userUID
+                ? " - "
                 : "vouch"}
             </div>
           </div>
