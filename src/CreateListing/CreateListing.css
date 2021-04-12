@@ -18,6 +18,10 @@
   color: #51c9c0;
 }
 
+.cl-back-button {
+  margin: 20px 0px;
+}
+
 .cl-body-container {
   width: 1000px;
   height: 700px;
@@ -113,6 +117,8 @@
   font-size: 20px;
   background-color: #1f2833;
   margin: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .cl-service-submit-button {

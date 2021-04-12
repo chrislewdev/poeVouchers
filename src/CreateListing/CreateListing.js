@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router";
+import { UserContext } from "../Global/UserContext";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../Firebase";
 import SelectionButton from "../Global/SelectionButton";
-import { UserContext } from "../Global/UserContext";
+import HeaderButton from "../Global/HeaderButton";
 import "./CreateListing.css";
 import {
   categoriesArray,
@@ -14,6 +16,8 @@ import {
 } from "../Global/Arrays";
 
 function CreateListing() {
+  let history = useHistory();
+
   const { currentUser, currentUserData } = useContext(UserContext);
 
   const [selectedCategories, setSelectedCategories] = useState("");
@@ -74,6 +78,9 @@ function CreateListing() {
     setServiceDetail("");
     setServiceTitle("");
     setServicePrice("");
+    setSelectedCategories("");
+    setSelectedServices("");
+    setSelectedCategoriesArray([]);
   };
 
   const handleSubmitClick = () => {
@@ -93,6 +100,8 @@ function CreateListing() {
           vouchedByUsername: "",
           vouchedByUID: "",
           docID: newDocID,
+          sellerDiscord: currentUserData[0].discord,
+          sellerPoeProfile: currentUserData[0].poeProfile,
         })
         .then(() =>
           db
@@ -112,7 +121,10 @@ function CreateListing() {
   return (
     <div className="cl-background">
       <div className="cl-wrapper">
-        <div className="cl-title">Create Listing</div>
+        {/* <div className="cl-title">Create Listing</div> */}
+        <div className="cl-back-button">
+          <HeaderButton buttonName="<" handleClick={() => history.push("/")} />
+        </div>
         <div className="cl-body-container">
           <div className="cl-box-one">CATEGORIES</div>
           <div className="cl-box-two">SERVICES</div>
@@ -141,14 +153,14 @@ function CreateListing() {
               ></input>
             </div>
             <div className="cl-service-detail-box">
-              <input
+              <textarea
                 type="text"
                 placeholder="more details here ..."
                 value={serviceDetail}
                 maxLength="100"
                 onChange={handleChangeServiceDetail}
                 className="cl-service-detail"
-              ></input>
+              ></textarea>
             </div>
             <div
               onClick={handleSubmitClick}
