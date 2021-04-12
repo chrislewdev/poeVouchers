@@ -58,3 +58,21 @@
   border-bottom: 2px solid #c5c6c7;
   color: #51c9c0;
 }
+
+.userpage-discord {
+  font-size: 30px;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid #c5c6c7;
+  color: #51c9c0;
+}
+
+.userpage-poe-profile {
+  font-size: 30px;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid #c5c6c7;
+  color: #51c9c0;
+}

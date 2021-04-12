@@ -68,12 +68,21 @@ function Userpage() {
               {currentUserData != null ? currentUserData[0].username : "-"}
             </div>
             <div className="userpage-vouches">
-              {currentUserData != null ? currentUserData[0].vouches : "-"}
-            </div>
-            <div className="userpage-vouches">
               {currentUserData != null
-                ? currentUserData[0].listingCreated
+                ? `Vouches: ${currentUserData[0].vouches}`
                 : "-"}
+            </div>
+            <div className="userpage-discord">
+              {currentUserData != null ? currentUserData[0].discord : "-"}
+            </div>
+            <div className="userpage-poe-profile">
+              {/* {currentUserData != null ? currentUserData[0].discord : "-"} */}
+              <a
+                href={currentUserData != null && currentUserData[0].poeProfile}
+                target="_blank"
+              >
+                POE Profile
+              </a>
             </div>
           </div>
           <div className="userpage-body-box2">{listingRender}</div>
