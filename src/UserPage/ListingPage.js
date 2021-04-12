@@ -41,24 +41,26 @@ function ListingPage({ docID, toggleListingPage }) {
 
   useEffect(() => {
     if (listingData != null && listingDataDeleted == false) {
-      const listing = {
-        price: listingData[0].price,
-        title: listingData[0].title,
-        detail: listingData[0].detail,
-        selectedServices: listingData[0].selectedServices,
-        sellerUID: listingData[0].sellerUID,
-        sellerUsername: listingData[0].sellerUsername,
-        vouched: listingData[0].vouched,
-        vouchedByUsername: listingData[0].vouchedByUsername,
-        vouchedByUID: listingData[0].vouchedByUID,
-        docID: listingData[0].docID,
-      };
+      if (value.length !== 0) {
+        const listing = {
+          price: listingData[0].price,
+          title: listingData[0].title,
+          detail: listingData[0].detail,
+          selectedServices: listingData[0].selectedServices,
+          sellerUID: listingData[0].sellerUID,
+          sellerUsername: listingData[0].sellerUsername,
+          vouched: listingData[0].vouched,
+          vouchedByUsername: listingData[0].vouchedByUsername,
+          vouchedByUID: listingData[0].vouchedByUID,
+          docID: listingData[0].docID,
+        };
 
-      setListing(listing);
+        setListing(listing);
 
-      setNewTitle(listing.title);
-      setNewPrice(listing.price);
-      setNewDetail(listing.detail);
+        setNewTitle(listing.title);
+        setNewPrice(listing.price);
+        setNewDetail(listing.detail);
+      }
     }
   }, [listingData]);
 
@@ -120,7 +122,9 @@ function ListingPage({ docID, toggleListingPage }) {
       });
   };
 
-  return (
+  return dataLoading ? (
+    <></>
+  ) : value.length !== 0 ? (
     <div className="up-lp-background">
       <div>
         <div className="up-lp-back-button">
@@ -134,9 +138,9 @@ function ListingPage({ docID, toggleListingPage }) {
             <input
               type="text"
               value={newTitle}
-              maxlength="20"
+              maxlength="40"
               onChange={handleChangeNewTitle}
-              className={"new-title-fields"}
+              className={"edit-fields"}
             ></input>
           ) : (
             <div className="up-lp-box-two">{listing.title}</div>
@@ -147,19 +151,19 @@ function ListingPage({ docID, toggleListingPage }) {
               value={newPrice}
               maxlength="6"
               onChange={handleChangeNewPrice}
-              className={"new-price-fields"}
+              className={"edit-fields"}
             ></input>
           ) : (
             <div className="up-lp-box-three">{listing.price}</div>
           )}
           {editMode ? (
-            <input
+            <textarea
               type="text"
               value={newDetail}
-              maxlength="40"
+              maxlength="100"
               onChange={handleChangeNewDetail}
-              className={"new-detail-fields"}
-            ></input>
+              className={"edit-fields"}
+            ></textarea>
           ) : (
             <div className="up-lp-box-four">{listing.detail}</div>
           )}
@@ -177,19 +181,42 @@ function ListingPage({ docID, toggleListingPage }) {
             )}
           </div>
           <div className="up-lp-box-six">
-            <HeaderButton buttonName="Delete" handleClick={handleDeleteClick} />
+            {editMode ? (
+              <HeaderButton
+                buttonName="Cancel"
+                handleClick={() => toggleEditMode(false)}
+              />
+            ) : (
+              <HeaderButton
+                buttonName="Delete"
+                handleClick={handleDeleteClick}
+              />
+            )}
           </div>
           <div className="up-lp-box-seven">
             {listing.vouched ? (
-              <HeaderButton
-                buttonName="Complete"
-                handleClick={handleCompleteClick}
-              />
+              <div className="vouched-wrapper">
+                <div>Vouched by:</div>
+                <div className="vouched-by">{listing.vouchedByUsername}</div>
+                <HeaderButton
+                  buttonName="Complete"
+                  handleClick={handleCompleteClick}
+                />
+              </div>
             ) : (
               <HeaderButton buttonName="-" />
             )}
           </div>
         </div>
+      </div>
+    </div>
+  ) : (
+    <div className="listing-not-found-wrapper">
+      <div className="up-lp-back-button">
+        <HeaderButton buttonName="<" handleClick={toggleListingPage} />
+      </div>
+      <div className="listing-not-found-title">
+        Listing might have been completed or deleted !
       </div>
     </div>
   );

@@ -102,3 +102,35 @@
   align-items: center;
   justify-content: center;
 }
+
+.vouched-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vouched-by {
+  margin-bottom: 10px;
+}
+
+.edit-fields {
+  background-color: #51c9c0;
+  opacity: 0.6;
+  font-size: 18px;
+  word-wrap: break-word;
+  word-break: break-all;
+  width: 632px;
+}
+
+.listing-not-found-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.listing-not-found-title {
+  margin-top: 20px;
+  color: #51c9c0;
+  font-size: 40px;
+}
