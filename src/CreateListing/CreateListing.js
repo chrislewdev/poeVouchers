@@ -85,34 +85,38 @@ function CreateListing() {
 
   const handleSubmitClick = () => {
     if (currentUserData[0].listingCreated < 5) {
-      const newDocID = uuidv4();
-      db.collection("listings")
-        .doc(newDocID)
-        .set({
-          title: serviceTitle,
-          detail: serviceDetail,
-          price: servicePrice,
-          sellerUID: currentUser.uid,
-          sellerUsername: currentUserData[0].username,
-          sellerVouches: currentUserData[0].vouches,
-          selectedServices: selectedServices,
-          vouched: false,
-          vouchedByUsername: "",
-          vouchedByUID: "",
-          docID: newDocID,
-          sellerDiscord: currentUserData[0].discord,
-          sellerPoeProfile: currentUserData[0].poeProfile,
-        })
-        .then(() =>
-          db
-            .collection("users")
-            .doc(`${currentUser.uid}`)
-            .update({
-              listingCreated: currentUserData[0].listingCreated + 1,
-            })
-        )
-        .then(() => alert("Listing successful"))
-        .then(resetForm);
+      if (serviceTitle.trim() !== "" && servicePrice.trim() !== "") {
+        const newDocID = uuidv4();
+        db.collection("listings")
+          .doc(newDocID)
+          .set({
+            title: serviceTitle,
+            detail: serviceDetail,
+            price: servicePrice,
+            sellerUID: currentUser.uid,
+            sellerUsername: currentUserData[0].username,
+            sellerVouches: currentUserData[0].vouches,
+            selectedServices: selectedServices,
+            vouched: false,
+            vouchedByUsername: "",
+            vouchedByUID: "",
+            docID: newDocID,
+            sellerDiscord: currentUserData[0].discord,
+            sellerPoeProfile: currentUserData[0].poeProfile,
+          })
+          .then(() =>
+            db
+              .collection("users")
+              .doc(`${currentUser.uid}`)
+              .update({
+                listingCreated: currentUserData[0].listingCreated + 1,
+              })
+          )
+          .then(() => alert("Listing successful"))
+          .then(resetForm);
+      } else {
+        alert("Title or Price cannot be empty !");
+      }
     } else {
       alert("You cannot create more than 5 listings !");
     }
