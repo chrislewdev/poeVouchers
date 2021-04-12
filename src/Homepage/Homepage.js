@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../Firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+import { v4 as uuidv4 } from "uuid";
 import SelectionButton from "../Global/SelectionButton";
 import Head from "./Head";
 import "./Homepage.css";
@@ -25,7 +26,7 @@ function Homepage() {
 
   const [listingsQuery, setListingsQuery] = useState(null);
 
-  const [value, dataLoading, dataError] = useCollectionData(listingsQuery);
+  const [value, dataLoading] = useCollectionData(listingsQuery);
 
   const [listingsArray, setListingsArray] = useState([]);
 
@@ -44,13 +45,14 @@ function Homepage() {
   const onPageChange = ({ selected }) => setPageNumber(selected);
 
   useEffect(() => {
-    if (value != undefined) {
+    if (value !== undefined) {
       setListingsArray(value);
     }
   }, [value]);
 
   const categoriesRender = categoriesArray.map((category) => (
     <SelectionButton
+      key={uuidv4()}
       buttonName={category}
       handleClick={() => {
         if (category === "temple") {
@@ -83,6 +85,7 @@ function Homepage() {
 
   const servicesRender = selectedCategoriesArray.map((service) => (
     <SelectionButton
+      key={uuidv4()}
       buttonName={service}
       handleClick={() => {
         setSelectedServices(service);
@@ -99,6 +102,7 @@ function Homepage() {
     .slice(pagesVisited, pagesVisited + usersPerPage)
     .map((listing) => (
       <Listing
+        key={uuidv4()}
         listing={listing}
         handleClick={(docID, vouches) => {
           setCurrentDocID(docID);
@@ -131,8 +135,6 @@ function Homepage() {
               containerClassName={"pagination-container"}
               activeLinkClassName={"active-button"}
               disabledClassName={"disable-button"}
-              // previousLinkClassName={listingsArray == [] && "disable-button"}
-              // nextLinkClassName={listingsArray == [] && "disable-button"}
             />
           )}
         </div>

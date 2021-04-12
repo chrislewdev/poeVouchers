@@ -1,11 +1,6 @@
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { UserContext } from "./Global/UserContext";
 import { auth } from "./Firebase";
 import Homepage from "./Homepage/Homepage";
@@ -20,15 +15,11 @@ import HowToPage from "./HowToPage/HowToPage";
 function App() {
   const [currentUser, currentUserLoading] = useAuthState(auth);
 
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [currentUserQuery, setCurrentUserQuery] = useState(null);
 
-  const [
-    currentUserData,
-    currentUserDataLoading,
-    dataError,
-  ] = useCollectionData(currentUserQuery);
+  const [currentUserData, currentUserDataLoading] = useCollectionData(
+    currentUserQuery
+  );
 
   useEffect(() => {
     if (currentUser != null) {
@@ -39,18 +30,6 @@ function App() {
       setCurrentUserQuery(userQuery);
     }
   }, [currentUserLoading, currentUser]);
-
-  // useEffect(() => {
-  //   if (currentUser != null) {
-  //     setIsLoggedIn(true);
-  //   }
-  // });
-
-  // useEffect(() => {
-  //   if (currentUser == null) {
-  //     setIsLoggedIn(false);
-  //   }
-  // });
 
   return (
     <UserContext.Provider
@@ -75,7 +54,6 @@ function App() {
               <Route path="/" component={Homepage} />
             </Switch>
           ) : (
-            // <Redirect to="/signin" />
             <Route path="/" component={SignIn} />
           )}
         </Router>

@@ -56,7 +56,7 @@ function HowToPage() {
               drop us an email !
             </div>
           </div>
-          <img src={homepagepng} />
+          <img src={homepagepng} alt="homepageimage" />
           <div className="howto-content-wrapper">
             <div className="howto-heavy">PROFILE</div>
             <div className="howto-light">
@@ -68,7 +68,7 @@ function HowToPage() {
               <br />* You can have up to maximum 5 listings at a time.
             </div>
           </div>
-          <img src={profilepagepng} />
+          <img src={profilepagepng} alt="profilepageimage" />
           <div className="howto-content-wrapper">
             <div className="howto-heavy">MANAGE YOUR LISTING</div>
             <div className="howto-light">
@@ -88,7 +88,7 @@ function HowToPage() {
               completed
             </div>
           </div>
-          <img src={userlistingpagepng} />
+          <img src={userlistingpagepng} alt="userlistingimage" />
           <div className="howto-content-wrapper">
             <div className="howto-heavy">CREATE LISTING</div>
             <div className="howto-light">
@@ -101,7 +101,7 @@ function HowToPage() {
               3. Click Submit !
             </div>
           </div>
-          <img src={createpng} />
+          <img src={createpng} alt="createlistingimage" />
         </div>
       </div>
     </div>

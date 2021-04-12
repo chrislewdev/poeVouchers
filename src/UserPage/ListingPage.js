@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { useHistory } from "react-router";
 import { db } from "../Firebase";
 import HeaderButton from "../Global/HeaderButton";
 import SelectionButton from "../Global/SelectionButton";
@@ -8,8 +7,6 @@ import { UserContext } from "../Global/UserContext";
 import "./ListingPage.css";
 
 function ListingPage({ docID, toggleListingPage }) {
-  const history = useHistory();
-
   const { currentUserData } = useContext(UserContext);
 
   const [listing, setListing] = useState({});
@@ -20,7 +17,7 @@ function ListingPage({ docID, toggleListingPage }) {
 
   const [listingDataDeleted, setListingDataDeleted] = useState(false);
 
-  const [value, dataLoading, dataError] = useCollectionData(query);
+  const [value, dataLoading] = useCollectionData(query);
 
   const [editMode, toggleEditMode] = useState(false);
 
@@ -34,13 +31,13 @@ function ListingPage({ docID, toggleListingPage }) {
   const handleChangeNewDetail = (e) => setNewDetail(e.target.value);
 
   useEffect(() => {
-    if (value != undefined) {
+    if (value !== undefined) {
       setListingData(value);
     }
   }, [value]);
 
   useEffect(() => {
-    if (listingData != null && listingDataDeleted == false) {
+    if (listingData !== null && listingDataDeleted === false) {
       if (value.length !== 0) {
         const listing = {
           price: listingData[0].price,
@@ -71,9 +68,7 @@ function ListingPage({ docID, toggleListingPage }) {
         vouches: currentUserData[0].vouches++,
         listingCreated: currentUserData[0].listingCreated--,
       })
-      // .then(() => alert("Listing deleted"))
       .then(() => {
-        // window.location.reload();
         setListingData(null);
         setListingDataDeleted(true);
         toggleListingPage();
@@ -89,9 +84,9 @@ function ListingPage({ docID, toggleListingPage }) {
   const handleConfirmEditClick = () => {
     toggleEditMode(false);
     if (
-      newTitle != listing.title ||
-      newPrice != listing.price ||
-      newDetail != listing.detail
+      newTitle !== listing.title ||
+      newPrice !== listing.price ||
+      newDetail !== listing.detail
     ) {
       db.collection("listings").doc(docID).update({
         title: newTitle,
@@ -105,11 +100,9 @@ function ListingPage({ docID, toggleListingPage }) {
     db.collection("users")
       .doc(currentUserData[0].userUID)
       .update({
-        // listingCreated: currentUserData[0].listingCreated--,
         listingCreated: 0,
       })
       .then(() => {
-        // window.location.reload();
         setListingData(null);
         setListingDataDeleted(true);
         toggleListingPage();

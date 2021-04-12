@@ -5,9 +5,7 @@ import { UserContext } from "../Global/UserContext";
 import "./SignUp.css";
 
 function SignUp() {
-  const { currentUser, currentUserData, currentUserDataLoading } = useContext(
-    UserContext
-  );
+  const { currentUserData } = useContext(UserContext);
 
   const [username, setUsername] = useState("");
   const handleChangeUsername = (e) => setUsername(e.target.value);

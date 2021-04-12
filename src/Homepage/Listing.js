@@ -8,9 +8,7 @@ function Listing({ listing, handleClick }) {
     .collection("users")
     .where("username", "==", listing.sellerUsername);
 
-  const [sellerData, dataLoading, dataError] = useCollectionDataOnce(
-    sellerUserQuery
-  );
+  const [sellerData, dataLoading] = useCollectionDataOnce(sellerUserQuery);
 
   const [sellerVouches, setSellerVouches] = useState("");
 

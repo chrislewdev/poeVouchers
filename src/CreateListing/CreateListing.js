@@ -121,7 +121,6 @@ function CreateListing() {
   return (
     <div className="cl-background">
       <div className="cl-wrapper">
-        {/* <div className="cl-title">Create Listing</div> */}
         <div className="cl-back-button">
           <HeaderButton buttonName="<" handleClick={() => history.push("/")} />
         </div>

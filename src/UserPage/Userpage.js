@@ -15,9 +15,7 @@ function Userpage() {
 
   const [currentDocID, setCurrentDocID] = useState("");
 
-  const { currentUser, currentUserData, currentUserDataLoading } = useContext(
-    UserContext
-  );
+  const { currentUserData } = useContext(UserContext);
 
   const [listingREF, setListingREF] = useState(null);
 
@@ -30,12 +28,12 @@ function Userpage() {
     }
   }, [currentUserData]);
 
-  const [listingData, listingDataLoading] = useCollectionData(listingREF);
+  const [listingData] = useCollectionData(listingREF);
 
   const [listingsArray, setListingsArray] = useState([]);
 
   useEffect(() => {
-    if (listingData != undefined) {
+    if (listingData !== undefined) {
       setListingsArray(listingData);
     }
   }, [listingData]);
@@ -58,7 +56,6 @@ function Userpage() {
   ) : (
     <div className="userpage-background">
       <div className="userpage-wrapper">
-        {/* <div className="userpage-title">User Profile</div> */}
         <div className="userpage-back-button">
           <HeaderButton buttonName="<" handleClick={() => history.push("/")} />
         </div>
@@ -76,7 +73,6 @@ function Userpage() {
               {currentUserData != null ? currentUserData[0].discord : "-"}
             </div>
             <div className="userpage-poe-profile">
-              {/* {currentUserData != null ? currentUserData[0].discord : "-"} */}
               <a
                 href={currentUserData != null && currentUserData[0].poeProfile}
                 target="_blank"

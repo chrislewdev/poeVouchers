@@ -10,7 +10,7 @@ function ListingPage({ toggleListingPage, docID, vouches }) {
 
   const query = db.collection("listings").where("docID", "==", docID);
 
-  const [value, dataLoading, dataError] = useCollectionData(query);
+  const [value, dataLoading] = useCollectionData(query);
 
   const { currentUserData } = useContext(UserContext);
 
@@ -38,7 +38,7 @@ function ListingPage({ toggleListingPage, docID, vouches }) {
 
   const handleVouchClick = () => {
     if (value.length !== 0) {
-      if (listing.vouched == false) {
+      if (listing.vouched === false) {
         if (listing.sellerUsername !== currentUserData[0].username) {
           db.collection("listings").doc(docID).update({
             vouched: true,
@@ -47,8 +47,8 @@ function ListingPage({ toggleListingPage, docID, vouches }) {
           });
         }
       }
-      if (listing.vouched == true) {
-        if (listing.vouchedByUID == currentUserData[0].userUID) {
+      if (listing.vouched === true) {
+        if (listing.vouchedByUID === currentUserData[0].userUID) {
           db.collection("listings").doc(docID).update({
             vouched: false,
             vouchedByUsername: "",
@@ -86,7 +86,7 @@ function ListingPage({ toggleListingPage, docID, vouches }) {
           <div className="lp-box-eight">
             <div className="lp-vouch-button" onClick={handleVouchClick}>
               {listing.vouched
-                ? listing.vouchedByUID == currentUserData[0].userUID
+                ? listing.vouchedByUID === currentUserData[0].userUID
                   ? "unvouch"
                   : "vouched"
                 : "vouch"}
