@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../Firebase";
-import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 import SelectionButton from "../Global/SelectionButton";
 import Head from "./Head";
 import "./Homepage.css";
@@ -25,7 +25,7 @@ function Homepage() {
 
   const [listingsQuery, setListingsQuery] = useState(null);
 
-  const [value, dataLoading, dataError] = useCollectionDataOnce(listingsQuery);
+  const [value, dataLoading, dataError] = useCollectionData(listingsQuery);
 
   const [listingsArray, setListingsArray] = useState([]);
 

@@ -22,10 +22,15 @@ function Head() {
     <div className="head-container">
       <HeadTitle headTitle="poeVouchers" />
       <div className="head-buttons-container">
+        <HeaderButton
+          style={{ marginRight: "32px" }}
+          buttonName="How To"
+          handleClick={() => history.push("/howto")}
+        />
         {currentUser ? (
           <HeaderButton
             style={{ marginRight: "32px" }}
-            buttonName="Create"
+            buttonName="New"
             handleClick={() => history.push("/create")}
           />
         ) : (
@@ -34,7 +39,7 @@ function Head() {
         {currentUser ? (
           <HeaderButton
             style={{ marginLeft: "32px" }}
-            buttonName="User"
+            buttonName="Profile"
             handleClick={() => history.push("/user")}
           />
         ) : (

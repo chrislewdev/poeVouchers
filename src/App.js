@@ -15,11 +15,12 @@ import Userpage from "./UserPage/Userpage";
 import CreateListing from "./CreateListing/CreateListing";
 import { useEffect, useState } from "react";
 import { db } from "./Firebase";
+import HowToPage from "./HowToPage/HowToPage";
 
 function App() {
   const [currentUser, currentUserLoading] = useAuthState(auth);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [currentUserQuery, setCurrentUserQuery] = useState(null);
 
@@ -28,10 +29,6 @@ function App() {
     currentUserDataLoading,
     dataError,
   ] = useCollectionData(currentUserQuery);
-
-  useEffect(() => {
-    console.log(currentUserData);
-  });
 
   useEffect(() => {
     if (currentUser != null) {
@@ -43,21 +40,17 @@ function App() {
     }
   }, [currentUserLoading, currentUser]);
 
-  useEffect(() => {
-    if (currentUser != null) {
-      setIsLoggedIn(true);
-    }
-  });
+  // useEffect(() => {
+  //   if (currentUser != null) {
+  //     setIsLoggedIn(true);
+  //   }
+  // });
 
-  useEffect(() => {
-    if (currentUser == null) {
-      setIsLoggedIn(false);
-    }
-  });
-
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (currentUser == null) {
+  //     setIsLoggedIn(false);
+  //   }
+  // });
 
   return (
     <UserContext.Provider
@@ -67,18 +60,17 @@ function App() {
         currentUserQuery,
         currentUserData,
         currentUserDataLoading,
-        isLoggedIn,
       }}
     >
       {currentUserLoading ? (
         <></>
       ) : (
         <Router>
-          {isLoggedIn == true ? (
+          {currentUser ? (
             <Switch>
-              {/* <Route exact path="/signup" component={SignUp} /> */}
-              {/* <Route exact path="/signin" component={SignIn} /> */}
               <Route exact path="/user" component={Userpage} />
+              <Route exact path="/howto" component={HowToPage} />
+              <Route exact path="/signup" component={SignUp} />
               <Route exact path="/create" component={CreateListing} />
               <Route path="/" component={Homepage} />
             </Switch>
