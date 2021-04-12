@@ -1,0 +1,32 @@
+.howto-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.howto-title {
+  color: red;
+  font-size: 40px;
+}
+
+.howto-content-wrapper {
+  margin-top: 60px;
+}
+
+.howto-heavy {
+  color: #51c9c0;
+  font-size: 28px;
+  text-decoration: underline;
+}
+
+.howto-light {
+  color: #51c9c0;
+  font-size: 22px;
+}
+
+img {
+  height: 600px;
+  margin-top: 20px;
+  border: 2px solid #c5c6c7;
+}
